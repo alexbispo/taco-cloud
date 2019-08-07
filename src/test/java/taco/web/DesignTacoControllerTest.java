@@ -1,4 +1,4 @@
-package taco;
+package taco.web;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -16,22 +16,21 @@ import org.springframework.test.web.servlet.MockMvc;
 import lombok.SneakyThrows;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
-public class HomeControllerTest {
-	
+@WebMvcTest(DesignTacoController.class)
+public class DesignTacoControllerTest {
+
 	@Autowired
 	private MockMvc mockMvc;
 	
 	@Test
 	@SneakyThrows
-	public void testHomePage() {
-		mockMvc.perform(get("/"))
+	public void testDesignFormPage() {
+		mockMvc.perform(get("/design"))
 		
 		.andExpect(status().isOk())
 		
-		.andExpect(view().name("home"))
+		.andExpect(view().name("design"))
 		
-		.andExpect(content().string(containsString("Welcome to...")));
+		.andExpect(content().string(containsString("Design your taco!")));
 	}
-
 }
